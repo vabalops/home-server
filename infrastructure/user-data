@@ -1,0 +1,46 @@
+#cloud-config
+hostname: rpi5-2
+manage_etc_hosts: true
+package_update: true
+package_upgrade: true
+packages:
+- avahi-daemon
+- vim
+
+apt:
+  conf: | 
+    Acquire {
+      Check-Date "false";
+    };
+timezone: Europe/Vilnius
+keyboard:
+  model: pc105
+  layout: "us"
+enable_ssh: true
+ssh_pwauth: false
+users:
+- default
+- name: radmin
+  groups: users,adm,dialout,audio,netdev,video,plugdev,cdrom,games,input,gpio,spi,i2c,render,sudo
+  shell: /bin/bash
+  lock_passwd: true
+  ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkHatgvi74boDByTG9FpMykqHFIbUj3NN6JDV7K/epWUPo8RPoCNl8Zidy6kDrfCTB8zcBXChCztsG6Cr+VOD5r6RuCwLtC+Ezw5NHYLmWRp4KKgFg45U9JbKPDKylcNoRWxNJ3aHnvgQKdkI8JdIi2jpSNvLorpyPaEimO0TO/Ok6yV1WuC70HULer48t4pW9PfElzKBCj2yhvKCWcaLRRE2ij5VT46L1gEJnkISEtQgu68+0ViX8H7wk7cojUvFaVWHUNavfa8lHfrTtbh8hHXSBLBffqGaXoJQRUpycyQzjKesFQcaXgY84ZP4kbaRUHqTGClmOuBCxgKiCLwhEkHXCDUhkMZb3Lunub4xtWiSuAFUf57iZ34wceQAe0uVB1DXrjrsOsspc6tsBXGHU6BPabCLvEwQ4lSjJh+9jC3E4tyjltG81xAvemA3XOfW4iXMt9iziRfoz/Zs/ezNAe5zrQyr2jn/4vHkKS3KIpOqH7ph+ys6icnJbbbcPGhk= vabalas@vabalas-HP-ProBook-440-G4
+  sudo: "ALL=(ALL) NOPASSWD:ALL"
+rpi:
+  interfaces:
+    serial: true
+
+# Disable WiFi
+write_files:
+  - path: /boot/firmware/config.txt
+    append: true
+    content: |
+      dtoverlay=disable-wifi
+  # k3s
+  - path: vim /boot/firmware/cmdline.txt
+    append: true
+    content: cgroup_memory=1 cgroup_enable=memory
+runcmd:
+  - [ rfkill, block, wifi ]
+  - [ sh, -c, "for f in /var/lib/systemd/rfkill/*:wlan; do echo 1 > \"$f\"; done" ]
