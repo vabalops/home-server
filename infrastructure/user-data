@@ -30,17 +30,31 @@ users:
 rpi:
   interfaces:
     serial: true
-
-# Disable WiFi
 write_files:
+  - path: /etc/motd
+    append: false
+    content: |
+
+      ▖▖  ▌   ▜ ▄▖    
+      ▌▌▀▌▛▌▀▌▐ ▌▌▛▌▛▘
+      ▚▘█▌▙▌█▌▐▖▙▌▙▌▄▌
+                  ▌   
+
+        \         /
+        `-.`-'.-'
+        ,:--.--:.
+        / |  |  | \
+        /\  |  /\
+        | `.:.' |
+      
   - path: /boot/firmware/config.txt
     append: true
     content: |
       dtoverlay=disable-wifi
   # k3s
-  - path: vim /boot/firmware/cmdline.txt
+  - path: /boot/firmware/cmdline.txt
     append: true
-    content: cgroup_memory=1 cgroup_enable=memory
+    content: "cgroup_memory=1 cgroup_enable=memory"
 runcmd:
   - [ rfkill, block, wifi ]
   - [ sh, -c, "for f in /var/lib/systemd/rfkill/*:wlan; do echo 1 > \"$f\"; done" ]
