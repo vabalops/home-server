@@ -6,7 +6,7 @@ package_upgrade: true
 packages:
 - avahi-daemon
 - vim
-
+- git
 apt:
   conf: | 
     Acquire {
@@ -35,15 +35,17 @@ write_files:
     append: false
     content: |
 
-      ▖▖  ▌   ▜ ▄▖    
-      ▌▌▀▌▛▌▀▌▐ ▌▌▛▌▛▘
-      ▚▘█▌▙▌█▌▐▖▙▌▙▌▄▌
-                  ▌   
-
-        \         /
+      .-..-.       .-.          .-.   .--.             
+      : :: :       : :          : :  : ,. :            
+      : :: : .--.  : `-.  .--.  : :  : :: :.---.  .--. 
+      : `' ;' .; ; ' .; :' .; ; : :_ : :; :: .; ``._-.'
+      `.,' `.__,_;`.__.'`.__,_;`.__;`.__.': ._.'`.__.'
+                                          : :         
+                                          :_;         
+       \         /
         `-.`-'.-'
         ,:--.--:.
-        / |  |  | \
+       / |  |  | \
         /\  |  /\
         | `.:.' |
       
@@ -54,7 +56,7 @@ write_files:
   # k3s
   - path: /boot/firmware/cmdline.txt
     append: true
-    content: "cgroup_memory=1 cgroup_enable=memory"
+    content: " cgroup_memory=1 cgroup_enable=memory"
 runcmd:
   - [ rfkill, block, wifi ]
   - [ sh, -c, "for f in /var/lib/systemd/rfkill/*:wlan; do echo 1 > \"$f\"; done" ]
