@@ -9,5 +9,10 @@ sudo cat /etc/rancher/k3s/k3s.yaml
 sudo cat /var/lib/rancher/k3s/server/node-token
 
 # on agent
+# TODO: configure as HA cluster
 NODE_TOKEN="xxxxx"
-curl -sfL https://get.k3s.io | K3S_URL='https://192.168.1.245:6443' K3S_TOKEN=${NODE_TOKEN} sh -
+curl -sfL https://get.k3s.io | K3S_URL='https://192.168.1.121:6443' K3S_TOKEN=${NODE_TOKEN} sh -
+
+add roles to nodes:
+kubectl label node all node-role.kubernetes.io/worker=
+kubectl label node all node-role.kubernetes.io/longhorn=

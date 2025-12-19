@@ -49,7 +49,8 @@ write_files:
        / |  |  | \
         /\  |  /\
         | `.:.' |
-      
+       
+
   - path: /boot/firmware/config.txt
     append: true
     content: |
@@ -61,3 +62,5 @@ write_files:
 runcmd:
   - [ rfkill, block, wifi ]
   - [ sh, -c, "for f in /var/lib/systemd/rfkill/*:wlan; do echo 1 > \"$f\"; done" ]
+  - [ git, clone, https://github.com/vabalops/home-server.git, /home/radmin/home-server]
+  - [ chown, -R, radmin:radmin, /home/radmin/home-server ]
