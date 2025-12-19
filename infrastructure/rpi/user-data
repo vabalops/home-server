@@ -31,6 +31,10 @@ rpi:
   interfaces:
     serial: true
 write_files:
+  - path: /home/radmin/.bash_aliases
+    append: false
+    content: |
+      alias ll=`ls -lah`
   - path: /etc/motd
     append: false
     content: |
