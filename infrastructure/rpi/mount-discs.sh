@@ -5,7 +5,7 @@ lsblk -f
 
 # to partition disk
 # d o n w
-sudo fdisk /dev/sda
+sudo fdisk /dev/sdb
 
 # format disk
 sudo mkfs -t ext4 /dev/sdb1
@@ -18,6 +18,9 @@ sudo mount -t auto /dev/sdb1 /var/lib/longhorn
 
 # list partition ids
 blkid
+
+# /dev/sdb1: UUID="09a29dce-2788-4387-a1e9-2bb596ad65b4" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="0288f56f-01"
+
 # or list if not visible with blkid
 ls -l /dev/disk/by-partuuid/
 
@@ -25,6 +28,6 @@ ls -l /dev/disk/by-partuuid/
 sudo fdisk -l /dev/sdb
 
 # edit fstab file
-# PARTUUID=de8ce8a2-01 /var/lib/longhorn ext4 defaults 0 2
+# PARTUUID=b01531f7-01 /var/lib/longhorn ext4 defaults 0 2
 sudo vim /etc/fstab
 
