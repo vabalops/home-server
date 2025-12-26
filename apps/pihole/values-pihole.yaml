@@ -8,8 +8,14 @@
 # TODO: Find a way to show source host IP address instead of envoy proxy IP in pihole logs and web interface
 
 serviceDns:
-  type: ClusterIP
+  loadBalancerIP: 192.168.1.102
+  annotations:
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+  type: LoadBalancer
   mixedService: true
+
+# extraEnvVars:
+#   PROXY_PROTOCOL: "true"
 
 serviceWeb:
   type: ClusterIP

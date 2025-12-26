@@ -15,18 +15,18 @@ spec:
       allowedRoutes:
         namespaces:
           from: Same  # Same or All or Selector
-    - name: dns
-      protocol: TCP
-      port: 53
-      allowedRoutes:
-        namespaces:
-          from: Same
-    - name: udp
-      protocol: UDP
-      port: 53
-      allowedRoutes:
-        namespaces:
-          from: Same
+    # - name: dns-tcp
+    #   protocol: TCP
+    #   port: 53
+    #   allowedRoutes:
+    #     namespaces:
+    #       from: Same
+    # - name: dns-udp
+    #   protocol: UDP
+    #   port: 53
+    #   allowedRoutes:
+    #     namespaces:
+    #       from: Same
     # - name: https
     #   protocol: HTTPS
     #   port: 443
@@ -75,35 +75,35 @@ spec:
     - name: pihole-web
       port: 80
       weight: 1
----
-apiVersion: gateway.networking.k8s.io/v1alpha2
-kind: TCPRoute
-metadata:
-  name: pihole-dns-route
-  namespace: pihole
-spec:
-  parentRefs:
-  - name: gateway-api
-    sectionName: dns
-    kind: Gateway
-  rules:
-  - backendRefs:
-    - name: pihole-dns
-      port: 53
-      weight: 1
----
-apiVersion: gateway.networking.k8s.io/v1alpha2
-kind: UDPRoute
-metadata:
-  name: pihole-dns-udp-route
-  namespace: pihole
-spec:
-  parentRefs:
-  - name: gateway-api
-    sectionName: udp
-    kind: Gateway
-  rules:
-  - backendRefs:
-    - name: pihole-dns
-      port: 53
-      weight: 1
+# ---
+# apiVersion: gateway.networking.k8s.io/v1alpha2
+# kind: TCPRoute
+# metadata:
+#   name: pihole-dns-route
+#   namespace: pihole
+# spec:
+#   parentRefs:
+#   - name: gateway-api
+#     sectionName: dns-tcp
+#     kind: Gateway
+#   rules:
+#   - backendRefs:
+#     - name: pihole-dns
+#       port: 53
+#       weight: 1
+# ---
+# apiVersion: gateway.networking.k8s.io/v1alpha2
+# kind: UDPRoute
+# metadata:
+#   name: pihole-dns-udp-route
+#   namespace: pihole
+# spec:
+#   parentRefs:
+#   - name: gateway-api
+#     sectionName: dns-udp
+#     kind: Gateway
+#   rules:
+#   - backendRefs:
+#     - name: pihole-dns
+#       port: 53
+#       weight: 1
