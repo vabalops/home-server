@@ -4,9 +4,9 @@ kind: Kustomization
 namespace: metallb-system
 
 helmGlobals:
-  chartHome: .
+  chartHome: ./metallb
 
 helmCharts:
 - name: metallb
-  valuesFile: metallb/values.yaml
+  valuesFile: values.yaml
   releaseName: metallb
