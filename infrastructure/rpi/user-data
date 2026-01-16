@@ -1,5 +1,5 @@
 #cloud-config
-hostname: rpi5-2
+hostname: rpi5-1
 manage_etc_hosts: true
 package_update: true
 package_upgrade: true
@@ -34,23 +34,7 @@ write_files:
   - path: /home/radmin/.bash_aliases
     append: false
     content: |
-      alias ll=`ls -lah`
-  - path: /etc/motd
-    append: false
-    content: |
-
-                 __             __   __   __     
-      \  /  /\  |__)  /\  |    /  \ |__) /__`    
-       \/  /~~\ |__) /~~\ |___ \__/ |    .__/    
-                                                 
-       \         /
-        `-.`-'.-'
-        ,:--.--:.
-       / |  |  | \
-        /\  |  /\
-        | `.:.' |
-       
-
+      alias ll=`ls -lah`    
   - path: /boot/firmware/config.txt
     append: true
     content: |
