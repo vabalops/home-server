@@ -12,8 +12,6 @@ spec:
       revision: main
       directories:
       - path: argocd-live/applications/*/envs/home
-      plugin:
-        name: kustomize-build-with-helm
   template:      
     metadata:
       name: '{{index .path.segments 2}}' 
