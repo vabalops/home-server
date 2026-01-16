@@ -1,5 +1,0 @@
-# helm repo add metallb https://metallb.github.io/metallb
-# helm repo update
-# helm install metallb metallb/metallb --version 0.15.3 --namespace metallb-system --create-namespace --values values-metallb.yaml
-# helm upgrade metallb metallb/metallb --namespace metallb-system --values ./values-metallb.yaml
-

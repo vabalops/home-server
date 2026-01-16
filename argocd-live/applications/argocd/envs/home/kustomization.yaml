@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+
+images:
+  - name: quay.io/argoproj/argocd
+    digest: sha256:0106ea4db8c1aacd7dda38e6bdb40b19a3d7b67b1b088cb8df694375b5b1c371 # v3.2.3
+
+patchesStrategicMerge:
+- service.yaml
