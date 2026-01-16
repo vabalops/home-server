@@ -8,6 +8,5 @@ helmGlobals:
 
 helmCharts:
 - name: metallb
-  chartHome: metallb
   valuesFile: metallb/values.yaml
   releaseName: metallb
