@@ -3,5 +3,8 @@ kind: Kustomization
 
 namespace: metallb-system
 
-resources:
-  - metallb
+helmCharts:
+- name: metallb
+  chartHome: metallb
+  valuesFile: metallb/values.yaml
+  releaseName: metallb
