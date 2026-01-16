@@ -26,7 +26,8 @@ spec:
         namespace: '{{index .path.segments 2}}'
       syncPolicy:
         syncOptions:
-          - CreateNamespace=true  
+          - CreateNamespace=true
+          - ServerSideApply=true
         automated:
           prune: true
           selfHeal: true
