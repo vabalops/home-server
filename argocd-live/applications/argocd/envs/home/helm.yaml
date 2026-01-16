@@ -3,5 +3,8 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
-  kustomize.buildOptions:
-    - --enable-helm
+  configManagementPlugins: |
+    - name: kustomize-build-with-helm
+      generate:
+        command: [ "sh", "-c" ]
+        args: [ "kustomize build --enable-helm" ]
