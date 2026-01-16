@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: metallb-system
 
 helmGlobals:
-  chartHome: metallb
+  chartHome: .
 
 helmCharts:
 - name: metallb
