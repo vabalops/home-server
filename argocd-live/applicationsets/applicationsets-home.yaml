@@ -21,14 +21,11 @@ spec:
         repoURL: https://github.com/vabalops/home-server.git
         targetRevision: main
         path: '{{.path.path}}'
-        kustomize:
-          buildOptions: "--enable-helm"
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{index .path.segments 2}}'
       syncPolicy:
         syncOptions:
-          - CreateNamespace=true
           - ServerSideApply=true
         automated:
           prune: true
