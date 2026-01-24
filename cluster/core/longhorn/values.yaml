@@ -1,6 +1,2 @@
 longhornUI:
   replicas: 1
-
-service:
-  ui:
-    type: LoadBalancer
