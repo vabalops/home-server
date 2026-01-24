@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applications
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/vabalops/home-server.git
+      revision: main
+      directories:
+      - path: cluster/applications/*
+  template:      
+    metadata:
+      name: '{{index .path.segments 2}}' 
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/vabalops/home-server.git
+        targetRevision: main
+        path: '{{.path.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        syncOptions:
+          - ServerSideApply=true
+        automated:
+          prune: true
+          selfHeal: true

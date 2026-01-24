@@ -16,6 +16,7 @@ curl -sfL https://get.k3s.io | K3S_URL='https://192.168.1.121:6443' K3S_TOKEN=${
 add roles to nodes:
 kubectl label node --all node-role.kubernetes.io/worker=
 kubectl label node --all node-role.kubernetes.io/longhorn=
+kubectl label node --all node-role.kubernetes.io/arm=
 
 
 ###### HA

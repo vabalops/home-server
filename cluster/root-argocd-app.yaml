@@ -8,13 +8,12 @@ spec:
   source:
     repoURL: https://github.com/vabalops/home-server.git
     targetRevision: main
-    path: argocd-live/applicationsets
+    path: cluster/applicationsets
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
     automated: 
-      prune: true 
+      prune: false 
       selfHeal: true
