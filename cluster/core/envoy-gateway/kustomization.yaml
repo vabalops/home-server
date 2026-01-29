@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: envoy-gateway-system
 
+resources:
+  - resources.yaml
+
 helmGlobals:
   chartHome: charts
 
