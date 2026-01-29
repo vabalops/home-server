@@ -3,10 +3,13 @@ kind: Kustomization
 
 namespace: envoy-gateway-system
 
+helmGlobals:
+  chartHome: charts
+
 helmCharts:
-  - name: envoy-gateway
-    releaseName: gateway-helm
+  - name: gateway-helm
+    releaseName: envoy-gateway
     namespace: envoy-gateway-system
-    repo: oci://docker.io/envoyproxy/gateway-helm
-    version: 1.6.3
+    # version: 1.6.3
     valuesFile: values.yaml
+    includeCRDs: true
