@@ -5,9 +5,9 @@ namespace: envoy-gateway-system
 
 helmCharts:
   - name: envoy-gateway
-    releaseName: envoy-gateway
+    releaseName: gateway-helm
     namespace: envoy-gateway-system
-    repo: oci://docker.io/envoyproxy/gateway-helm
+    repo: https://github.com/vabalops/home-server/tree/main/cluster/core/envoy-gateway/gateway-helm
     version: 1.6.3
     valuesFile: values.yaml
     includeCRDs: true
