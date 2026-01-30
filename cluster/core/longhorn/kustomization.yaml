@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: longhorn-system
 
+resources:
+  - envoy.yaml
+
 helmCharts:
   - name: longhorn
     releaseName: longhorn

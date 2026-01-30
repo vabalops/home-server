@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: pihole
 
+resources:
+  - envoy.yaml
+
 helmCharts:
   - name: pihole
     releaseName: pihole
