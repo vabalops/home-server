@@ -24,7 +24,7 @@ kubectl label node --all node-role.kubernetes.io/arm=
 # requires load balancer in front of servers
 
 # first node
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=v1.34 sh -s - --cluster-init --token homeKubernetes2026 --tls-san 192.168.1.222 --disable=traefik --disable=local-storage --flannel-backend=host-gw --disable-network-policy
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=v1.34 sh -s - --cluster-init --token homeKubernetes2026 --tls-san 192.168.1.222 --disable=traefik --disable=local-storage --flannel-backend=host-gw --disable-network-policy --disable=servicelb
 
 # remaining
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=v1.34 sh -s - --server https://192.168.1.222:6443 --token homeKubernetes2026 --disable=traefik --disable=local-storage --flannel-backend=host-gw --disable-network-policy
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=v1.34 sh -s - --server https://192.168.1.222:6443 --token homeKubernetes2026 --disable=traefik --disable=local-storage --flannel-backend=host-gw --disable-network-policy --disable=servicelb
