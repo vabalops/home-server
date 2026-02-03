@@ -64,17 +64,20 @@ metadata:
 spec:
   parentRefs:
   - name: gateway-api
+    group: gateway.networking.k8s.io
     sectionName: http #allows us to bind to a specific listener in the Gateway
     kind: Gateway
   rules:
-  - matches:
+  - backendRefs:
+    - name: pihole-web
+      group: ''
+      kind: Service
+      port: 80
+      weight: 1
+    matches:
     - path: 
         type: Exact
         value: /admin
-  - backendRefs:
-    - name: pihole-web
-      port: 80
-      weight: 1
 ---
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TCPRoute
@@ -84,11 +87,14 @@ metadata:
 spec:
   parentRefs:
   - name: gateway-api
+    group: gateway.networking.k8s.io
     sectionName: dns-tcp
     kind: Gateway
   rules:
   - backendRefs:
     - name: pihole-dns
+      group: ''
+      kind: Service
       port: 53
       weight: 1
 ---
@@ -100,10 +106,13 @@ metadata:
 spec:
   parentRefs:
   - name: gateway-api
+    group: gateway.networking.k8s.io
     sectionName: dns-udp
     kind: Gateway
   rules:
   - backendRefs:
     - name: pihole-dns
+      group: ''
+      kind: Service
       port: 53
       weight: 1
