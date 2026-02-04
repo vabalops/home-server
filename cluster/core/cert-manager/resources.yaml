@@ -7,7 +7,7 @@ spec:
     email: armandasdev@gmail.com
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: letsencrypt-dns-prod-account-key
+      name: letsencrypt-staging-account-key
     solvers:
     - dns01:
         cloudflare:
@@ -25,7 +25,7 @@ spec:
     email: armandasdev@gmail.com
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: letsencrypt-dns-prod-account-key
+      name: letsencrypt-dns-production-account-key
     solvers:
     - dns01:
         cloudflare:
