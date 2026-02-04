@@ -70,10 +70,10 @@ spec:
   parentRefs:
   - name: gateway-api
     group: gateway.networking.k8s.io
-    sectionName: http #allows us to bind to a specific listener in the Gateway
+    sectionName: https
     kind: Gateway
-  # hostnames:
-  # - longhorn.vabalai.eu
+  hostnames:
+  - longhorn.home.vabalai.eu
   rules:
   - backendRefs:
     - name: longhorn-frontend
