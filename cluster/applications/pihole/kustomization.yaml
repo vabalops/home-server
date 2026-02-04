@@ -5,6 +5,7 @@ namespace: pihole
 
 resources:
   - envoy.yaml
+  - cert-manager.yaml
 
 helmCharts:
   - name: pihole
