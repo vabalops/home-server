@@ -3,3 +3,7 @@ crds:
 
 config:
   enableGatewayAPI: true
+
+global:
+  leaderElection:
+    namespace: "cert-manager"
