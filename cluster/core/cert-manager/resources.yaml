@@ -9,8 +9,12 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-private-key-staging
     solvers:
-    - http01:
-        gatewayHTTPRoute: {}
+    - dns01:
+        cloudflare:
+          email: armandasdev@gmail.com
+          apiKeySecretRef:
+            name: cloudflare-api-key-secret
+            key: api-key
 
 ---
 apiVersion: cert-manager.io/v1
@@ -24,5 +28,9 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-private-key-production
     solvers:
-    - http01:
-        gatewayHTTPRoute: {}
+    - dns01:
+        cloudflare:
+          email: armandasdev@gmail.com
+          apiKeySecretRef:
+            name: cloudflare-api-key-secret
+            key: api-key
