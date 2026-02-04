@@ -5,6 +5,7 @@ namespace: longhorn-system
 
 resources:
   - envoy.yaml
+  - cert-manager.yaml
 
 helmCharts:
   - name: longhorn
