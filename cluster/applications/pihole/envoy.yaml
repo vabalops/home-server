@@ -14,7 +14,7 @@ spec:
       port: 80
       allowedRoutes:
         namespaces:
-          from: Same  # Same or All or Selector
+          from: Same
     - name: dns-tcp
       protocol: TCP
       port: 53
@@ -27,17 +27,17 @@ spec:
       allowedRoutes:
         namespaces:
           from: Same
-    # - name: https
-    #   protocol: HTTPS
-    #   port: 443
-    #   tls:
-    #     mode: Terminate
-    #     certificateRefs:
-    #       - name: secret-tls
-    #         namespace: default
-    #   allowedRoutes:
-    #     namespaces:
-    #       from: Same
+    - name: https
+      protocol: HTTPS
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: pihole-tls
+            namespace: pihole
+      allowedRoutes:
+        namespaces:
+          from: Same
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyProxy
@@ -59,25 +59,43 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: pihole-web-route
+  name: pihole-http-redirect
   namespace: pihole
 spec:
   parentRefs:
   - name: gateway-api
-    group: gateway.networking.k8s.io
-    sectionName: http #allows us to bind to a specific listener in the Gateway
     kind: Gateway
+    sectionName: http
   rules:
-  - backendRefs:
-    - name: pihole-web
-      group: ''
-      kind: Service
-      port: 80
-      weight: 1
-    matches:
-    - path: 
+  - matches:
+    - path:
         type: PathPrefix
         value: /
+    filters:
+    - type: RequestRedirect
+      requestRedirect:
+        scheme: https
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: pihole-https
+  namespace: pihole
+spec:
+  parentRefs:
+  - name: gateway-api
+    kind: Gateway
+    sectionName: https
+  hostnames:
+  - pihole.example.com
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: pihole-web
+      port: 80
 ---
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TCPRoute
