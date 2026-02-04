@@ -3,6 +3,6 @@ kind: GatewayClass
 metadata:
   name: envoy
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
