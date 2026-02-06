@@ -13,7 +13,6 @@ spec:
             name: pihole-password
         args:
           - --source=service
-          - --source=gateway
           - --source=gateway-httproute
           - --registry=noop
           - --policy=upsert-only
