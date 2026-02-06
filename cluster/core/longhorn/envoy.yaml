@@ -3,6 +3,8 @@ kind: Gateway
 metadata:
   name: gateway-api
   namespace: longhorn-system
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: longhorn.home.vabalai.eu
 spec:
   gatewayClassName: envoy
   infrastructure:

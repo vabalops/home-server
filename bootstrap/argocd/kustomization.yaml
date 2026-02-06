@@ -14,5 +14,5 @@ images:
 
 patches:
 - path: configmap.yaml
-- path: service.yaml
+# - path: service.yaml
 - path: deployments.yaml
