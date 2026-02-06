@@ -19,3 +19,4 @@ spec:
           - --provider=pihole
           - --pihole-api-version=6
           - --pihole-server=http://pihole-web.pihole.svc.cluster.local
+          - --pihole-tls-skip-verify
