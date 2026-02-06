@@ -4,3 +4,4 @@ metadata:
   name: argocd-cm
 data:
   kustomize.buildOptions: "--enable-helm --load-restrictor=LoadRestrictionsNone"
+  url: https://argocd.home.vabalai.eu
