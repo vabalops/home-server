@@ -59,7 +59,7 @@ spec:
     - name: argocd-server
       group: ''
       kind: Service
-      port: 443
+      port: 80
       weight: 1
     matches:	
         - path:	
