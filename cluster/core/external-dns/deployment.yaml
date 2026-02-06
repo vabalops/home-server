@@ -4,12 +4,13 @@ metadata:
   name: external-dns
   namespace: external-dns
 spec:
-  strategy:
-    type: Recreate
   template:
     spec:
       containers:
       - name: external-dns
+        envFrom:
+        - secretRef:
+            name: pihole-password
         args:
           - --source=service
           - --source=ingress
