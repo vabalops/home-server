@@ -4,9 +4,9 @@ metadata:
   name: external-dns
   namespace: external-dns
 spec:
+  replicas: 0 # scaling down while fix is unknown
   template:
     spec:
-      replicas: 0
       containers:
       - name: external-dns
         envFrom:
