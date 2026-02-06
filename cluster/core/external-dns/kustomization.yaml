@@ -13,3 +13,7 @@ helmCharts:
     releaseName: external-dns
     namespace: external-dns
     # valuesFile: values.yaml
+
+patches:
+- path: deployment.yaml
+

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+  namespace: external-dns
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+      - name: external-dns
+        args:
+          - --source=service
+          - --source=ingress
+          - --registry=noop
+          - --policy=upsert-only
+          - --provider=pihole
+          - --pihole-api-version=6
+          - --pihole-server=http://pihole-web.pihole.svc.cluster.local
