@@ -10,5 +10,4 @@ config:
         default: info
 
 deployment:
-  envoyGateway:
-    replicas: 2
+  replicas: 2
