@@ -8,3 +8,7 @@ config:
     logging:
       level:
         default: info
+
+deployment:
+  envoyGateway:
+    replicas: 2

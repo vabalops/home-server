@@ -28,6 +28,6 @@ ls -l /dev/disk/by-partuuid/
 sudo fdisk -l /dev/sdb
 
 # edit fstab file
-# PARTUUID=b01531f7-01 /var/lib/longhorn ext4 defaults 0 2
+# PARTUUID=d4b9ff78-01 /var/lib/longhorn ext4 defaults 0 2
 sudo vim /etc/fstab
 
