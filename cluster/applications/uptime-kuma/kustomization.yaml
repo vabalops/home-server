@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: uptime-kuma
+
+# resources:
+#   - envoy.yaml
+#   - cert-manager.yaml
+
+helmCharts:
+  - name: uptime-kuma
+    releaseName: uptime-kuma
+    namespace: uptime-kuma
+    repo: https://dirsigler.github.io/uptime-kuma-helm
+    version: 2.24.0
